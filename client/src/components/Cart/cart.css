@@ -1,0 +1,36 @@
+.cart-courses-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  margin: auto;
+}
+
+.cart-lower-container {
+  display: flex;
+  flex-direction: column;
+  flex: 6;
+}
+
+.No-courses-page {
+  display: flex;
+  justify-content: center;
+  margin: 10em auto;
+}
+
+.learning-link {
+  margin-left: 10px;
+}
+
+.cart-total-courses {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkout-success-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 55px;
+}

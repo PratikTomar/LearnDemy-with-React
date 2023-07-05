@@ -1,0 +1,113 @@
+.cart-course-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(226, 213, 213);
+  margin-bottom: 20px;
+}
+
+.cart-course-containerr .rating-container {
+  margin: 10px auto 0;
+}
+
+.cart-lower-container-course {
+  display: flex;
+  flex-direction: row;
+}
+
+.delete-container {
+  display: flex;
+  flex: 2;
+
+  flex-direction: column;
+}
+
+.title-description {
+  flex: 4;
+  margin-left: 10px;
+}
+
+.title-items {
+  margin: 0;
+}
+
+.trainer-name {
+  color: grey;
+  margin: 0;
+  font-size: 14px;
+}
+
+.cart-course-title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.price-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-container .discount-price {
+  color: rgb(185, 29, 233);
+  font-weight: 700;
+  margin: 0;
+  font-size: 18px;
+}
+
+.actual-price {
+  color: grey;
+  width: fit-content;
+  margin: 0;
+}
+
+.remove-cart-item {
+  color: rgb(185, 29, 233);
+  background-color: white;
+  border: 1px solid white;
+}
+
+.total-key {
+  margin: 0;
+}
+
+.total-container {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  height: fit-content;
+  margin-left: 10px;
+  margin-bottom: 24px;
+}
+
+.total-discount-price {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.total-actual-price {
+  color: grey;
+  width: fit-content;
+}
+
+.discount-price {
+  color: grey;
+  font-size: 12px;
+}
+
+.checkout-link {
+  flex: 5;
+  padding: 8px;
+  display: inline;
+  background-color: rgb(185, 29, 233);
+  border: 1px solid white;
+  text-decoration: none;
+  color: white;
+  width: 90%;
+  font-weight: 700;
+  text-align: center;
+}
+
+.strike-through {
+  text-decoration: line-through;
+}

@@ -1,0 +1,11 @@
+.rating-wrapper {
+    display: flex;
+}
+.stars {
+    color: #FFD700;
+}
+.reviews {
+    color: grey;
+    font-size: 12px;
+    margin: auto 0;
+}

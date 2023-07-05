@@ -1,0 +1,10 @@
+.courses-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+    height: fit-content;
+  }
+
+  .no-courses {
+    text-align: center;
+  }

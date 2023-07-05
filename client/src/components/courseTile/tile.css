@@ -1,0 +1,56 @@
+.tile-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    height: fit-content;
+    width: 250px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.title {
+    margin-top: 4px;
+    font-weight: 700;
+}
+
+.rating-wrapper {
+    margin: 0;
+}
+
+.rating-wrapper .stars {
+    white-space: nowrap;
+}
+
+.trainer-name {
+    font-weight: 500;
+    color: grey;
+}
+
+.actual-price {
+    margin-left: 10px;
+    color: grey;
+    width: fit-content;
+}
+
+.discounted-price {
+    font-weight: 700;
+}
+
+.price-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.badge {
+    color: black;
+    background-color: rgb(226, 241, 160);
+    width: fit-content;
+    padding: 4px;
+}
+
+.strike-through {
+    text-decoration: line-through;
+}

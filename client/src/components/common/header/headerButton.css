@@ -1,0 +1,16 @@
+.login-buttons {
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 0;
+    background-color: white;
+    padding: 10px;
+    margin-left: 6px;
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+  }
+  .Signup-style {
+    background-color: black;
+    color: white;
+  }

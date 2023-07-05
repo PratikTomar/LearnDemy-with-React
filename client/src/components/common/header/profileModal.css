@@ -1,0 +1,51 @@
+.profile-modal-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(199, 191, 191);
+    list-style-type: none;
+    background-color: white;
+}
+.detail-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-bottom: 1px solid rgb(199, 191, 191);;
+}
+.name-symbol {
+    border-radius: 22px;
+    background-color: rgb(7, 35, 61);
+    padding: 12px;
+    margin: auto;
+    height: fit-content;
+    color: white;
+}
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.full-name {
+    font-size: 12px;
+    font-weight: 600;
+}
+.list-of-actions-container {
+    padding: 10px;
+}
+.list-of-actions {
+    list-style-type: none;
+    padding: 0;
+}
+.action-items {
+    padding-bottom: 12px;
+    text-decoration: none;
+    color: black;
+
+}
+.log-out {
+    background-color: white;
+    border: 1px solid white;
+    padding: 0;
+    font-size: 14px;
+}

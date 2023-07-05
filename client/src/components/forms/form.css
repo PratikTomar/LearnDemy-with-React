@@ -1,0 +1,64 @@
+.wrapper {
+    width: 400px;
+    max-width: 100%;
+    padding: 4.8rem 2.4rem;
+    margin: auto;
+}
+
+.heading {
+    font-size: 16px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input {
+    border-radius: 0px;
+    border: 1px solid grey;
+    margin-bottom: 6px;
+    width: 100%;
+    padding: 0;
+    height: 60px;
+    padding-left: 16px;
+}
+
+button.social-media-btn {
+    width: 100%;
+    background: white;
+    margin-bottom: 8px;
+    padding: 10px;
+    text-align: inherit;
+    justify-content: left;
+    border: 1px solid black;
+}
+
+button.social-media-btn:hover {
+    background-color: rgba(0, 0, 0, .04);
+}
+
+.social-media-btn span {
+    margin-left: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+button.social-media-btn img {
+    margin-right: 8px;
+    width: 32px;
+    height: 32px;
+}
+
+.form-control-btn {
+    margin-top: 16px;
+    width: 100%;
+    background-color: #a435f0;
+    color: white;
+    height: 48px;
+}
+
+.alert {
+    text-align: center;
+}
