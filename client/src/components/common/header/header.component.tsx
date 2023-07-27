@@ -4,18 +4,19 @@ import logo from "../../../assets/Logo.png";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store";
-import { addExistingUser } from "../../../redux/reducer/auth.reducer";
+import { loginUser, signUpUser } from "../../../redux/reducer/auth.reducer";
 import HeaderButton from "./headerButton.component";
 import ProfileModal from "./profileModal.component";
 import SearchBar from "./searchBar.component";
 
-export default function Header() {
+const Header = () => {
   const reference = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isUserAuthenticated = useSelector(
-    (state: RootState) => state.login.isUserAuthenticated
+    (state: RootState) => state.auth.isUserAuthenticated
   );
+  
   const cartItems = useSelector((state: RootState) => state.cart);
 
   const [showModal, setShowModal] = useState(false);
@@ -31,60 +32,78 @@ export default function Header() {
     true
   );
 
-  const user = useSelector((state: RootState) => state.login.user);
+  const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
-    if (localStorage["auth-token"]) {
-      dispatch(addExistingUser({ user, isUserAuthenticated: true }));
+    if (localStorage.getItem("auth-token")) {
+      dispatch(loginUser({ isUserAuthenticated: true, user }));
     }
   }, []);
+
+  const userModalHandler = () => {
+    setShowModal(true);
+  };
+
+  const renderCartCount = () => {
+    if (isUserAuthenticated) {
+      return (
+        <>
+          <i className="fa-solid fa-cart-shopping" />
+          <div className="cart-count-container">
+            <Link to={"/dashboard/cart"} className="cart-url">
+              <p className="cart-count">{cartItems.length}</p>
+            </Link>
+          </div>
+        </>
+      );
+    }
+  };
+
+  const renderUserName = () => {
+    if (user?.name && isUserAuthenticated) {
+      return (
+        <button className="user-name header-items" onClick={userModalHandler}>
+          {user.name.slice(0, 2)}
+        </button>
+      );
+    }
+  };
+
+  const renderAuthenticationButtons = () => {
+    if (!isUserAuthenticated) {
+      return (
+        <>
+          <HeaderButton label="Log in" />
+          <HeaderButton label="Sign up" />
+        </>
+      );
+    }
+  };
 
   return (
     <header className="container">
       <Link to={"/dashboard"} className="title">
-        <img src={logo} alt="Logo" />
+        <img src={logo} alt="Learndemy Logo" />
       </Link>
       <SearchBar />
       <div className="buttons-container">
         {isUserAuthenticated && (
           <>
-            <p className="header-items">My learnings</p>
+            <p className="header-text">My learnings</p>
             <p className="header-items">
               <i className="fa-regular fa-heart fa-xl" />
             </p>
           </>
         )}
-        <p className="header-items">
-          {isUserAuthenticated && (
-            <>
-              <i className="fa-solid fa-cart-shopping" />
-              <div className="cart-count-container">
-                <Link to={"/dashboard/cart"} className="cart-url">
-                  <p className="cart-count">{cartItems.length}</p>
-                </Link>
-              </div>
-            </>
-          )}
-        </p>
-
-        {user?.name && isUserAuthenticated && (
-          <button
-            className="user-name header-items"
-            onClick={() => setShowModal(true)}
-          >
-            {user?.name?.slice(0, 2)}
-          </button>
-        )}
+        <span className="header-items">{renderCartCount()}</span>
+        {renderUserName()}
         <div className="model-container">
           {showModal && <ProfileModal ref={reference} user={user} />}
         </div>
-        {!isUserAuthenticated && (
-          <>
-            <HeaderButton label={"Login"} />
-            <HeaderButton label={"Signup"} />
-          </>
-        )}
+        {renderAuthenticationButtons()}
       </div>
     </header>
   );
-}
+};
+
+export default Header;

@@ -11,8 +11,24 @@ export default function CourseDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const course = useSelector((state: RootState) => state.courses.courseById);
+  const course = useSelector((state: RootState) => state.courses.selectedCourse);
   const cart = useSelector((state: RootState) => state.cart);
+
+  const cartItemHandler = () => {
+    const cartItemPresent = cart?.find(
+      (item) => item.id === course?.id
+    );
+    if (!cartItemPresent) {
+      dispatch(addItemToCart([course]));
+    }
+    navigate("/dashboard/cart");
+  }
+
+  const buyNowHandler = () => {
+    dispatch(addItemToCart([course]));
+    navigate("/dashboard/checkout");
+  }
+
   useEffect(() => {
     dispatch({ type: sagaActions.FETCH_COURSE_BY_ID, payload: id });
   }, []);
@@ -21,7 +37,7 @@ export default function CourseDetail() {
     <>
       <div className="detail-wrapper">
         <div className="detail-left-wrapper">
-          <div className="course-title">{course?.title}</div>
+          <h1 className="course-title">{course?.title}</h1>
           <div className="course-desc">{course.description}</div>
           <div className="rating-status">
             <p className="badge-status">{course?.badge}</p>
@@ -33,7 +49,7 @@ export default function CourseDetail() {
           <p className="trainer-details">Created by {course?.trainerName}</p>
 
           <div className="learning-container">
-            <h1>What you will Learn</h1>
+            <h2>What you will Learn</h2>
             <ul className="list-of-learning ">
               <li className="list-items">
                 <i className="fa-solid fa-check" />
@@ -57,24 +73,13 @@ export default function CourseDetail() {
             className="course-image"
             alt={`${course?.title} course`}
             src={course?.imageUrl}
-            height={"200px"}
-            width={"250px"}
           />
           <div className="buy-course-container">
             <div className="course-price">&#8377;{course?.discountedPrice}</div>
             <div className="atc-container">
               <button
                 className="add-to-cart"
-                onClick={() => {
-                  const cartItemPresent = cart?.find(
-                    (item) => item.id === course?.id
-                  );
-
-                  if (!cartItemPresent) {
-                    dispatch(addItemToCart([course]));
-                  }
-                  navigate("/dashboard/cart");
-                }}
+                onClick={cartItemHandler}
               >
                 Add To Cart
               </button>
@@ -85,10 +90,7 @@ export default function CourseDetail() {
               </div>
             </div>
             <button
-              onClick={() => {
-                dispatch(addItemToCart([course]));
-                navigate("/dashboard/checkout");
-              }}
+              onClick={buyNowHandler}
               className="buy-now"
             >
               Buy now
@@ -96,7 +98,7 @@ export default function CourseDetail() {
           </div>
         </div>
       </div>
-      <div className="absolute-background" />
+      <div className="black-background"></div>
     </>
   );
 }

@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
-const router = express.Router();
 import { loginUser, signupUser, getUserData } from '../controller/authController';
 
-router.post("/login", loginUser);
+const router = express.Router();
 router.post("/signup", signupUser);
 router.get("/user/userData/:id", getUserData);
+router.post("/login", loginUser);
+
 
 export default router;

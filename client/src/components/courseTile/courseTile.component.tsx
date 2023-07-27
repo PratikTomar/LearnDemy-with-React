@@ -3,30 +3,15 @@ import { CourseModel } from "../../models/course.model";
 import "./tile.css";
 import Ratings from "../atoms/rating/rating.component";
 import { Link } from "react-router-dom";
-type courseTileProps = {
+type CourseTileProps = {
   course: CourseModel;
 };
 
-export default function CourseTile(props: courseTileProps) {
-
+const CourseTile = (props: CourseTileProps) => {
   return (
     <div key={props.course.id} className="tile-wrapper">
-      {/* <img
-        src={props.course?.imageUrl}
-        alt={props.course?.title}
-        width={"250px"}
-        height={"150px"}
-      /> */}
-      <Link
-        to={`/dashboard/coursedetails/${props.course.id}`}
-        className="link"
-      >
-             <img
-        src={props.course?.imageUrl}
-        alt={props.course?.title}
-        width={"250px"}
-        height={"150px"}
-      />
+      <Link to={`/dashboard/coursedetails/${props.course.id}`} className="link">
+        <img src={props.course?.imageUrl} alt={props.course?.title} />
         <div className="title">{props.course?.title}</div>
       </Link>
       <div className="trainer-name">{props.course?.trainerName}</div>
@@ -34,16 +19,18 @@ export default function CourseTile(props: courseTileProps) {
       <Ratings ratings={props.course?.rating} reviews={props.course?.reviews} />
 
       <div className="price-wrapper">
-        <div className="discounted-price" aria-label="discount price">
+        <div className="discounted-price" aria-label="discounted price">
           &#8377;{props.course?.discountedPrice}
         </div>
         <div className="actual-price" aria-label="actual price">
-          <div className="strike-through" >
-          &#8377;{props.course?.actualPrice}
-          </div>
+          <span className="strike-through">
+            &#8377;{props.course?.actualPrice}
+          </span>
         </div>
       </div>
       <div className="badge">{props.course?.badge}</div>
     </div>
   );
-}
+};
+
+export default CourseTile;

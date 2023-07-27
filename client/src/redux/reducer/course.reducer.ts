@@ -3,23 +3,22 @@ import { CourseModel } from "../../models/course.model";
 
 const initialState = {
     courses: [new CourseModel()],
-    courseById: new CourseModel(),
+    selectedCourse: new CourseModel(),
   };
 
 export const coursesReducer = createSlice({
   name: "courses",
   initialState,
   reducers: {
-    setCourses: (store, { payload }: PayloadAction<CourseModel[]>) => {
-      store.courses.push(...payload);
+    addCourses: (state, { payload }: PayloadAction<CourseModel[]>) => {
+      state.courses=payload
     },
-    setCourseById: (store, { payload }: PayloadAction<CourseModel>) => {
-        store.courseById = payload;
-        return store;
+    addSelectedCourse: (state, { payload }: PayloadAction<CourseModel>) => {
+        state.selectedCourse = payload;
     },
   },
 });
 
-export const { setCourses, setCourseById } =
+export const { addCourses, addSelectedCourse } =
   coursesReducer.actions;
 export default coursesReducer.reducer;

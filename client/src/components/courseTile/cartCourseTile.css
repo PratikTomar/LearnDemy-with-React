@@ -6,11 +6,11 @@
   margin-bottom: 20px;
 }
 
-.cart-course-containerr .rating-container {
+.cart-course-container .rating-container {
   margin: 10px auto 0;
 }
 
-.cart-lower-container-course {
+.cart-course-content {
   display: flex;
   flex-direction: row;
 }
@@ -61,7 +61,7 @@
   margin: 0;
 }
 
-.remove-cart-item {
+.cart-remove-btn {
   color: rgb(185, 29, 233);
   background-color: white;
   border: 1px solid white;
@@ -110,4 +110,8 @@
 
 .strike-through {
   text-decoration: line-through;
+}
+
+.cart-course-image {
+  height: 130px;
 }

@@ -11,21 +11,25 @@ const initialState: UserAuth = {
   user: new UserModel(),
 };
 
-export const loginReducer = createSlice({
-  name: "login",
+export const authReducer = createSlice({
+  name: "auth",
   initialState,
   reducers: {
-    addExistingUser(state, action: PayloadAction<UserAuth>) {
+    loginUser: (state, action: PayloadAction<UserAuth>) => {
       state.isUserAuthenticated = action.payload.isUserAuthenticated;
       state.user = action.payload.user;
       return state;
     },
-    signUpUserReducer: (state, action: PayloadAction<UserModel>) => {
+    signUpUser: (state, action: PayloadAction<UserModel>) => {
       state.user = action.payload;
       return state;
     },
+    logOutUser: (state) => {
+      state.isUserAuthenticated = false;
+      state.user = new UserModel();
+    }
   },
 });
 
-export const { addExistingUser, signUpUserReducer } = loginReducer.actions;
-export default loginReducer.reducer;
+export const { loginUser, signUpUser, logOutUser } = authReducer.actions;
+export default authReducer.reducer;

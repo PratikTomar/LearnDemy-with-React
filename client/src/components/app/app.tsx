@@ -1,18 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../forms/login.component";
 import SignUp from "../forms/signup.component";
-import CheckAuth from "../CheckAuth/CheckAuth";
-import DashBoard from "../Dashboard/dashboard";
+import DashBoard from "../dashboard/dashboard";
 import TileContainer from "../courseTile/tileContainer";
 import CourseDetail from "../courseDetail/courseDetail";
 import Footer from "../common/footer/footer.component";
-import CartPage from "../Cart/cart.component";
-import CheckoutPage from "../Checkout/checkout.component";
-import CheckoutSuccess from "../Checkout/checkoutSuccess.component";
-import '../../../src/App.css'
+import CartPage from "../cart/cart.component";
+import CheckoutPage from "../checkout/checkout.component";
+import CheckoutSuccess from "../checkout/checkoutSuccess.component";
+import "../../../src/App.css";
 import Error from "../error/error.component";
+import ProtectedRoute from "../protectedRoute/protectedRoute";
 
-export default function App() {
+const App = () => {
   return (
     <>
       <BrowserRouter>
@@ -22,9 +22,9 @@ export default function App() {
           <Route
             path="/dashboard"
             element={
-              <CheckAuth>
+              <ProtectedRoute>
                 <DashBoard />
-            </CheckAuth>
+              </ProtectedRoute>
             }
           >
             <Route path="" element={<TileContainer />} />
@@ -39,4 +39,6 @@ export default function App() {
       </BrowserRouter>
     </>
   );
-}
+};
+
+export default App;

@@ -1,4 +1,4 @@
-.login-buttons {
+.btn-header {
     height: fit-content;
     margin-top: auto;
     margin-bottom: auto;
@@ -9,8 +9,11 @@
     border: 1px solid black;
     text-decoration: none;
     color: black;
+    font-weight: 700;
   }
-  .Signup-style {
+
+  .button-signup {
     background-color: black;
     color: white;
+    
   }

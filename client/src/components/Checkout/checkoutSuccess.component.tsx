@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import '../Cart/cart.css'
+import "../cart/cart.css";
 
 export default function CheckoutSuccess() {
-  return <div className="checkout-success-container">Transaction Successful</div>;
+  return (
+    <div className="checkout-success-container">Transaction Successful</div>
+  );
 }

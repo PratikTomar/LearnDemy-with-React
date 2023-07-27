@@ -2,18 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./headerButton.css";
 
-type buttonProps = {
-  label: String;
+type ButtonProps = {
+  label: string;
 };
 
-export default function HeaderButton(props: buttonProps): JSX.Element {
+const HeaderButton = (props: ButtonProps): JSX.Element => {
   const { label } = props;
+  const getButtonStyle = () => {
+    if (label.toLowerCase() === "log in") {
+      return "button-login";
+    }
+    return "button-signup";
+  };
+
   return (
     <Link
-      to={`/${label.toLowerCase() === "login" ? "" : "signup"}`}
-      className={`login-buttons ${label}-style`}
+      to={`/${label.toLowerCase() === "log in" ? "" : "signup"}`}
+      className={`btn-header ${getButtonStyle()}`}
     >
       {label}
     </Link>
   );
 }
+
+export default HeaderButton;

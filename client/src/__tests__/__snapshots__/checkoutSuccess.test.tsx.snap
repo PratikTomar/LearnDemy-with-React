@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders transaction success message 1`] = `
+<div
+  class="checkout-success-container"
+>
+  Transaction Successful
+</div>
+`;

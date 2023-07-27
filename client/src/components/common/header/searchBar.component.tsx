@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store/store";
@@ -5,22 +6,24 @@ import { CourseModel } from "../../../models/course.model";
 import { searchCourses } from "../../../redux/reducer/search.reducer";
 import "./searchBar.css";
 
-export default function SearchBar() {
+const SearchBar = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const courses = useSelector((state: RootState) => state.courses);
-
-  const coursesSearched: CourseModel[] = [];
-
   useEffect(() => {
-    courses?.courses?.forEach((item: CourseModel) => {
-      if (item.title.toLowerCase().includes(inputValue?.toLowerCase())) {
-        coursesSearched.push(item);
-      }
-    });
+    let coursesSearched: CourseModel[] =[];
+    coursesSearched=courses?.courses.filter(
+      (item: CourseModel) =>
+        item.title.toLowerCase().includes(inputValue.toLowerCase())
+    );
 
     dispatch(searchCourses(coursesSearched));
-  }, [inputValue]);
+    
+  }, [inputValue, courses]);
+
+  const handleInputChange  = (e: any) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <input
@@ -28,7 +31,9 @@ export default function SearchBar() {
       type="text"
       value={inputValue}
       placeholder="Search your courses"
-      onChange={(e) => setInputValue(e.target.value)}
+      onChange={handleInputChange }
     />
   );
 }
+
+export default SearchBar;

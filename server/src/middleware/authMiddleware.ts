@@ -14,14 +14,14 @@ export const isAuthenticated = (
         token || "",
         process?.env?.SECRET_KEY || "OtherSecretKey",
         (err, decodedToken) => {
-          if (err) res.status(500).json({ err: "Invalid Token" });
+          if (err) res.status(500).json({ status: 'fail', err: "Invalid Token" });
         }
       );
       next();
     } else {
-      return res.status(401).json({ msg: "Token not found !" });
+      return res.status(401).json({status: 'fail', msg: "Token not found !" });
     }
   } catch (error) {
-    return res.status(500).json({error});
+    return res.status(500).json({status: 'fail', error});
   }
 };

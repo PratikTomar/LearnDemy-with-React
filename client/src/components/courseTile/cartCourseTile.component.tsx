@@ -8,18 +8,20 @@ type CourseProps = {
   coursedetails: CourseModel;
 };
 
-export default function CartCourses(props: CourseProps) {
+const CartCourses= (props: CourseProps) => {
   const { coursedetails } = props;
   const dispatch = useDispatch();
+  const removeItemHandler = () => {
+    dispatch(deleteItemFromCart(coursedetails));
+  }
 
   return (
     <div className="cart-course-container">
-      <div className="cart-lower-container-course">
+      <div className="cart-course-content">
         <img
           src={coursedetails.imageUrl}
           alt={coursedetails.title}
-          height={"80px"}
-          width={"130px"}
+          className="cart-course-image"
         />
         <div className="title-description">
           <p className="cart-course-title title-items">{coursedetails.title}</p>
@@ -27,17 +29,15 @@ export default function CartCourses(props: CourseProps) {
             By {coursedetails.trainerName}
           </p>
           <Ratings
-            ratings={coursedetails.reviews}
+            ratings={coursedetails.rating}
             reviews={coursedetails.reviews}
           />
           <p className="trainer-name">{coursedetails.trainerName}</p>
         </div>
         <div className="delete-container">
           <button
-            className="remove-cart-item"
-            onClick={() => {
-              dispatch(deleteItemFromCart(coursedetails));
-            }}
+            className="cart-remove-btn"
+            onClick={removeItemHandler}
           >
             Remove
           </button>
@@ -52,8 +52,9 @@ export default function CartCourses(props: CourseProps) {
             </span>
           </p>
         </div>
-        <div className="cart-courses-total"></div>
       </div>
     </div>
   );
 }
+
+export default CartCourses;

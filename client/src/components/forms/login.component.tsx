@@ -17,7 +17,7 @@ type LoginInput = {
   password: string;
 };
 
-export default function Login() {
+const Login = () => {
   const {
     register,
     handleSubmit,
@@ -26,10 +26,11 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isUserAuthenticated = useSelector(
-    (state: RootState) => state.login.isUserAuthenticated
+    (state: RootState) => state.auth.isUserAuthenticated
   );
-  const onSubmit = (e: LoginInput) => {
-    const user = new UserModel(e.email, e.password);
+  const onSubmit = (data: LoginInput) => {
+    const { email, password } = data;
+    const user = new UserModel(email, password);
     dispatch({ type: sagaActions.AUTHENTICATE_USER, payload: user });
   };
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function Login() {
     <>
       <Header />
       <div className="wrapper">
-        <h2 className="heading"> Log into your LearnDemy Account </h2>
+        <h2 className="heading"> Log into your LearnDemy account </h2>
         <div className="social-media-buttons">
           <button className="social-media-btn">
             <img alt="google-logo" src={Google} />
@@ -58,7 +59,7 @@ export default function Login() {
         </div>
         <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
           <input
-            type="Email"
+            type="email"
             placeholder="Email"
             className="form-input"
             {...register("email", { required: true })}
@@ -69,36 +70,36 @@ export default function Login() {
 
           <input
             type="password"
-            placeholder="password"
+            placeholder="Password"
             className="form-input"
             {...register("password", {
               required: true,
-
-              validate: {
-                maxLength: (v) =>
-                  v.length <= 20 ||
-                  "The password should have at most 20 characters",
-                matchPattern: (v) =>
-                  /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z]).{8,}$/.test(v) ||
-                  "The password you have entered should have minimum length 8, 1 capital letter, 1 numeric and 1 alphanumeric",
-              },
+              maxLength: 20,
+              pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z]).{8,}$/,
             })}
           />
 
           {errors.password && (
             <p style={{ color: "red" }}>
-              {errors.password.message === ""
-                ? "Password is required !"
+              {errors.password.type === "required"
+                ? "Password is required!"
+                : errors.password.type === "maxLength"
+                ? "The password should have at most 20 characters"
                 : "The password you have entered should have minimum length 8, 1 capital letter, 1 numeric and 1 alphanumeric"}
             </p>
           )}
+
           <br />
-          <button className="form-control-btn">Log In</button>
+          <button type="submit" className="form-control-btn">
+            Log In
+          </button>
         </form>
-        <p className="alert">
+        <p className="no-account-text">
           Don't have an account ? <Link to={"/signup"}>Sign up</Link>
         </p>
       </div>
     </>
   );
-}
+};
+
+export default Login;

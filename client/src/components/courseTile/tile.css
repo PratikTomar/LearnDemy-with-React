@@ -11,6 +11,10 @@
     color: black;
 }
 
+.link img {
+    width: 100%;
+}
+
 .title {
     margin-top: 4px;
     font-weight: 700;

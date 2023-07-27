@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useGetAuthenticateUserStatus } from "../hooks/authorizeHook";
 
-const CheckAuth = (props : any) => {
+const ProtectedRoute = (props : any) => {
   let userStatus = useGetAuthenticateUserStatus();
 
   if (!userStatus) {
@@ -11,4 +11,4 @@ const CheckAuth = (props : any) => {
   return props.children;
 }
 
-export default CheckAuth;
+export default ProtectedRoute;

@@ -15,7 +15,7 @@ type SignUpInput = {
   password: string;
 };
 
-export default function SignUp() {
+const SignUp = () => {
   const {
     register,
     handleSubmit,
@@ -23,8 +23,9 @@ export default function SignUp() {
   } = useForm<SignUpInput>({ mode: "onChange" });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const onSubmit = (e: SignUpInput) => {
-    const user = new UserModel(e.email, e.password, e.name);
+  const onSubmit = (data: SignUpInput) => {
+    const { email, name, password } = data;
+    const user = new UserModel(email, password, name);
     dispatch({ type: sagaActions.ADD_NEW_USER, payload: user });
     navigate("/dashboard");
   };
@@ -44,7 +45,7 @@ export default function SignUp() {
           {errors.name && <p style={{ color: "red" }}>Name is required !</p>}
 
           <input
-            type="Email"
+            type="email"
             placeholder="Email"
             className="form-input"
             {...register("email", { required: true })}
@@ -59,21 +60,17 @@ export default function SignUp() {
             className="form-input"
             {...register("password", {
               required: true,
-              validate: {
-                maxLength: (v) =>
-                  v.length <= 20 ||
-                  "The password should have at most 20 characters",
-                matchPattern: (v) =>
-                  /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z]).{8,}$/.test(v) ||
-                  "The password you have entered should have minimum length 8, 1 capital letter, 1 numeric and 1 alphanumeric",
-              },
+              maxLength: 20,
+              pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z]).{8,}$/,
             })}
           />
 
           {errors.password && (
             <p style={{ color: "red" }}>
-              {errors.password.message === ""
-                ? "Password is required !"
+              {errors.password.type === "required"
+                ? "Password is required!"
+                : errors.password.type === "maxLength"
+                ? "The password should have at most 20 characters"
                 : "The password you have entered should have minimum length 8, 1 capital letter, 1 numeric and 1 alphanumeric"}
             </p>
           )}
@@ -86,4 +83,6 @@ export default function SignUp() {
       </div>
     </>
   );
-}
+};
+
+export default SignUp;

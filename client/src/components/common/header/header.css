@@ -14,7 +14,7 @@
     display: flex;
     justify-content: flex-end;
   }
-  .header-items {
+  .header-items, .header-text {
     margin: auto 10px;
   }
   .user-name {
