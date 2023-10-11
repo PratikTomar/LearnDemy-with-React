@@ -10,6 +10,7 @@ import {
 } from "../redux/reducer/auth.reducer";
 import { addSelectedCourse, addCourses } from "../redux/reducer/course.reducer";
 import { searchCourses } from "../redux/reducer/search.reducer";
+import { COURSES_API, COURSE_DETAIL_API, LOGIN_API, SIGN_UP_API, USER_API } from "../utils/constants";
 
 type Response = {
   data: any;
@@ -21,7 +22,7 @@ type Response = {
 };
 
 const userLogin = async (user: UserModel) => {
-  const res = await axios.post<UserModel>("http://localhost:3600/login", {
+  const res = await axios.post<UserModel>(LOGIN_API, {
     email: user.email,
     password: user.password,
   });
@@ -29,7 +30,7 @@ const userLogin = async (user: UserModel) => {
 };
 
 const userSignUp = async (user: UserModel) => {
-  const res = await axios.post<UserModel>("http://localhost:3600/signup", {
+  const res = await axios.post<UserModel>(SIGN_UP_API, {
     email: user.email,
     password: user.password,
     name: user.name,
@@ -39,7 +40,7 @@ const userSignUp = async (user: UserModel) => {
 
 const getUserData = async () => {
   const res = await axios.get<UserModel[]>(
-    `http://localhost:3600/user/userData/${localStorage["userId"]}`
+    USER_API
   );
   return res;
 };
@@ -61,7 +62,7 @@ export function* userAuthentication(action: PayloadAction<UserModel>) {
 }
 
 const getCourses = async (token: string) => {
-  return axios.get<CourseModel[]>("http://localhost:3600/courses", {
+  return axios.get<CourseModel[]>(COURSES_API, {
     headers: {
       Authorization: `Bearer ${localStorage["auth-token"]}`,
     },
@@ -78,7 +79,7 @@ export function* fetchCourses(action: PayloadAction<string>) {
 }
 
 const getCourseById = async (id: number) => {
-  return axios.get<CourseModel[]>(`http://localhost:3600/courseDetail/${id}`, {
+  return axios.get<CourseModel[]>(COURSE_DETAIL_API+`${id}`, {
     headers: {
       Authorization: `Bearer ${localStorage["auth-token"]}`,
     },

@@ -36,11 +36,12 @@
     margin: 0;
   }
   .badge-status {
-    color: black;
-    background-color: rgb(226, 241, 160);
+    color: rgb(61, 60, 10);
+    background-color: rgb(236, 235, 152);
     width: fit-content;
     padding: 4px;
     margin-bottom: 12px;
+    font-weight: 700;
   }
   .course-status {
     display: flex;
@@ -91,6 +92,7 @@
     position: inherit;
     z-index: 10;
     display: flex;
+    
   }
   .add-to-cart {
     flex: 5;
@@ -98,6 +100,8 @@
     display: inline;
     background-color: rgb(185, 29, 233);
     border: 1px solid white;
+    font-weight: 700;
+    color: white;
   }
   .buy-now {
     padding: 8px;
@@ -106,7 +110,7 @@
     width: 95%;
     color: black;
     background-color: white;
-    font-weight: 600;
+    font-weight: 700;
     border: 1px rgb(83, 78, 78) solid;
   }
   .wish-list {

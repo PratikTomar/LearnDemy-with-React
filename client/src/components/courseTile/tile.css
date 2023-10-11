@@ -4,6 +4,7 @@
     margin: 10px;
     height: fit-content;
     width: 250px;
+    
 }
 
 .link {
@@ -48,9 +49,9 @@
     flex-direction: row;
 }
 
-.badge {
-    color: black;
-    background-color: rgb(226, 241, 160);
+.tile-wrapper .badge {
+    color: rgb(61, 60, 10);
+    background-color: rgb(236, 235, 152);
     width: fit-content;
     padding: 4px;
 }
