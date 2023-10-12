@@ -1,6 +1,6 @@
 import { CourseModel } from "../../models/course.model";
 
-export const getActualDiscountPrices = (cartItem: CourseModel[]) => {
+export const useActualDiscounts = (cartItem: CourseModel[]) => {
   let totalCount = 0;
   let actualTotalCount = 0;
   cartItem?.forEach((item) => {

@@ -1,4 +1,4 @@
-import { call, takeLatest, put, retry } from "redux-saga/effects";
+import { call, takeLatest, put } from "redux-saga/effects";
 import { sagaActions } from "./sagaActions";
 import axios from "axios";
 import { CourseModel } from "../models/course.model";

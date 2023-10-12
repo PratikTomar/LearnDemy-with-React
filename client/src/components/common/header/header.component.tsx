@@ -4,14 +4,13 @@ import logo from "../../../assets/Logo.png";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store";
-import { loginUser, signUpUser } from "../../../redux/reducer/auth.reducer";
+import { loginUser } from "../../../redux/reducer/auth.reducer";
 import HeaderButton from "./headerButton.component";
 import ProfileModal from "./profileModal.component";
 import SearchBar from "./searchBar.component";
 
 const Header = () => {
   const reference = useRef();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isUserAuthenticated = useSelector(
     (state: RootState) => state.auth.isUserAuthenticated

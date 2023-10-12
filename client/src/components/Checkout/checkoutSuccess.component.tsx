@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../cart/cart.css";
 
 export default function CheckoutSuccess() {

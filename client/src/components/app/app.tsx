@@ -10,7 +10,7 @@ import CheckoutPage from "../checkout/checkout.component";
 import CheckoutSuccess from "../checkout/checkoutSuccess.component";
 import "../../../src/App.css";
 import Error from "../error/error.component";
-import ProtectedRoute from "../protectedRoute/protectedRoute";
+import ProtectedRoute from "../protectedRoute/ProtectedRoute";
 
 const App = () => {
   return (

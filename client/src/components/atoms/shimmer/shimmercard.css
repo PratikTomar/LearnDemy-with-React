@@ -1,0 +1,30 @@
+.shimmer-container {
+ 
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+    
+}
+
+.shimmer-card {
+    background-color: #f0f0f0;
+    margin: 10px;
+    /* height: fit-content; */
+    width: 250px;
+    height: 280px
+}
+
+/* .tile-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    height: fit-content;
+    width: 250px;
+    
+} */
+/* .courses-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+    height: fit-content;
+  } */

@@ -6,6 +6,7 @@ import "./tileContainer.css";
 import { sagaActions } from "../../saga/sagaActions";
 import { RootState } from "../../redux/store/store";
 import { addCourses } from "../../redux/reducer/course.reducer";
+import { ShimmerCard } from "../atoms/shimmer/ShimmerCard";
 
 const TileContainer = () => {
   const dispatch = useDispatch();
@@ -18,14 +19,15 @@ const TileContainer = () => {
     };
   }, []);
 
-  if (courses.courses.length === 0) {
-    return <h1 className="no-courses">No courses found</h1>;
-  }
-  const courseTiles = courses.courses.map((course: CourseModel) => {
-    return <CourseTile key={course?.id} course={course} />;
-  });
-
-  return <div className="courses-container">{courseTiles}</div>;
+  return (courses.courses.length === 0) ? (
+    <ShimmerCard />
+  ) : (
+    <div className="courses-container">
+      {courses.courses.map((course: CourseModel) => {
+        return <CourseTile key={course?.id} course={course} />;
+      })}
+    </div>
+  );
 };
 
 export default TileContainer;

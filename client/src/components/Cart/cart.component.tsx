@@ -3,12 +3,12 @@ import { RootState } from "../../redux/store/store";
 import { Link } from "react-router-dom";
 import CartCourses from "../courseTile/cartCourseTile.component";
 import { CourseModel } from "../../models/course.model";
-import { getActualDiscountPrices } from "../hooks/actualDiscount";
 import "./cart.css";
+import { useActualDiscounts } from "../../utils/hooks/useActualDiscount";
 
 const CartPage = () => {
   const cartItem = useSelector((state: RootState) => state.cart);
-  const { totalCount, actualTotalCount } = getActualDiscountPrices(cartItem);
+  const { totalCount, actualTotalCount } = useActualDiscounts(cartItem);
   const discount = actualTotalCount - totalCount;
 
   const cartIsEmpty = cartItem.length === 0;

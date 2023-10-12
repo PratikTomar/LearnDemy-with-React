@@ -1,9 +1,8 @@
 import React from "react";
 import "./profileModal.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { UserModel } from "../../../models/user.model";
-import { signUpUser, logOutUser } from "../../../redux/reducer/auth.reducer";
-import { RootState } from "../../../redux/store/store";
+import { logOutUser } from "../../../redux/reducer/auth.reducer";
 import { Link, useNavigate } from "react-router-dom";
 
 type ModalProps = {

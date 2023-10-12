@@ -1,21 +1,22 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { getActualDiscountPrices } from "../hooks/actualDiscount";
+
 import { RootState } from "../../redux/store/store";
 import "./checkout.css";
+import { useActualDiscounts } from "../../utils/hooks/useActualDiscount";
 
 const CheckoutPage = () => {
   const cartItem = useSelector((state: RootState) => state.cart);
 
-  const { totalCount, actualTotalCount } = getActualDiscountPrices(cartItem);
+  const { totalCount, actualTotalCount } = useActualDiscounts(cartItem);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const onSubmit = (data : any) => {
+  const onSubmit = (data: any) => {
     navigate("/dashboard/checkoutSuccess");
   };
 
@@ -95,7 +96,7 @@ const CheckoutPage = () => {
               <label htmlFor="cardNumber" className="check-out-label">
                 Card Number:
               </label>
-               {errors.cardNumber && (
+              {errors.cardNumber && (
                 <p className="error-messsage">
                   number should start with "4" should have 13 digits
                 </p>
@@ -194,6 +195,6 @@ const CheckoutPage = () => {
       </form>
     </div>
   );
-}
+};
 
 export default CheckoutPage;

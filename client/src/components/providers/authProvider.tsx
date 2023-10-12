@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { useGetAuthenticateUserStatus } from "../hooks/authorizeHook";
+import { useGetAuthenticateUserStatus } from "../../utils/hooks/useGetAuthenticateUserStatus";
 
 const AuthContext = createContext({ isLoggedIn: true });
 

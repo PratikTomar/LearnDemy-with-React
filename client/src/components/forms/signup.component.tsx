@@ -2,12 +2,11 @@ import React from "react";
 import { UserModel } from "../../models/user.model";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sagaActions } from "../../saga/sagaActions";
 import { Link } from "react-router-dom";
 import "../forms/form.css";
 import Header from "../common/header/header.component";
-import { RootState } from "../../redux/store/store";
 
 type SignUpInput = {
   name: string;
