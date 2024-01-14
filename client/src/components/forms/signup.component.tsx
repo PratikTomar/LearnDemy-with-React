@@ -25,7 +25,6 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.auth.isLoading);
-  console.log(isLoading);
   
   const onSubmitHandler = (data: SignUpInput) => {
     const { email, name, password } = data;

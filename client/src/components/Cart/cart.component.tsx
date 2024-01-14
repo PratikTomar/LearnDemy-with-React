@@ -5,14 +5,11 @@ import CartCourses from "../courseTile/cartCourseTile.component";
 import { CourseModel } from "../../models/course.model";
 import { getActualDiscountPrices } from "../hooks/actualDiscount";
 import "./cart.css";
-import Loader from "../common/loader/loader.component";
 
 const CartPage = () => {
   const cartItem = useSelector((state: RootState) => {
     return state.cart;
   });
-  const isLoading = useSelector((state: RootState) => state.auth.isLoading);
-  console.log(isLoading);
   
   const { totalCount, actualTotalCount } = getActualDiscountPrices(cartItem);
   const discount = actualTotalCount - totalCount;
@@ -21,10 +18,6 @@ const CartPage = () => {
   const cartItemData = cartItem.map((item: CourseModel) => (
     <CartCourses key={item.id} coursedetails={item} />
   ));
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   if (cartIsEmpty) {
     return (

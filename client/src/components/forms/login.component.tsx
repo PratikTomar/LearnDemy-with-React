@@ -30,7 +30,6 @@ const Login = () => {
     return state.auth.isUserAuthenticated;
   });
   const isLoading = useSelector((state: RootState) => state.auth.isLoading);
-  console.log(isLoading);
 
   const onSubmitHandler = (data: LoginInput) => {
     const { email, password } = data;
