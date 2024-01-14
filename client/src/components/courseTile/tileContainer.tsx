@@ -6,10 +6,12 @@ import "./tileContainer.css";
 import { sagaActions } from "../../saga/sagaActions";
 import { RootState } from "../../redux/store/store";
 import { addCourses } from "../../redux/reducer/course.reducer";
+import Loader from "../common/loader/loader.component";
 
 const TileContainer = () => {
   const dispatch = useDispatch();
   const courses = useSelector((state: RootState) => state.searchedCourses);
+  const isLoading = useSelector((state: RootState) => state.auth.isLoading);
 
   useEffect(() => {
     dispatch({ type: sagaActions.FETCH_COURSES_SAGA_ACTION });
@@ -17,6 +19,9 @@ const TileContainer = () => {
       dispatch(addCourses([]));
     };
   }, []);
+  if (isLoading) {
+   return <Loader />;
+  }
 
   if (courses.courses.length === 0) {
     return <h1 className="no-courses">No courses found</h1>;

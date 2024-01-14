@@ -11,6 +11,7 @@ import Apple from "../../assets/apple.png";
 import Facebook from "../../assets/facebook.png";
 import { RootState } from "../../redux/store/store";
 import Header from "../common/header/header.component";
+import Loader from "../common/loader/loader.component";
 
 type LoginInput = {
   email: string;
@@ -25,10 +26,13 @@ const Login = () => {
   } = useForm<LoginInput>({ mode: "onChange" });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isUserAuthenticated = useSelector(
-    (state: RootState) => state.auth.isUserAuthenticated
-  );
-  const onSubmit = (data: LoginInput) => {
+  const isUserAuthenticated = useSelector((state: RootState) => {
+    return state.auth.isUserAuthenticated;
+  });
+  const isLoading = useSelector((state: RootState) => state.auth.isLoading);
+  console.log(isLoading);
+
+  const onSubmitHandler = (data: LoginInput) => {
     const { email, password } = data;
     const user = new UserModel(email, password);
     dispatch({ type: sagaActions.AUTHENTICATE_USER, payload: user });
@@ -38,6 +42,9 @@ const Login = () => {
       navigate("/dashboard");
     }
   }, [isUserAuthenticated]);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <Header />
@@ -57,7 +64,10 @@ const Login = () => {
             <span>Continue with Apple</span>
           </button>
         </div>
-        <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="form-container"
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
           <input
             type="email"
             placeholder="Email"

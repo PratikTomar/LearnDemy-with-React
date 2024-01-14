@@ -16,7 +16,7 @@ const Header = () => {
   const isUserAuthenticated = useSelector(
     (state: RootState) => state.auth.isUserAuthenticated
   );
-  
+
   const cartItems = useSelector((state: RootState) => state.cart);
 
   const [showModal, setShowModal] = useState(false);
@@ -24,8 +24,11 @@ const Header = () => {
   window.addEventListener(
     "click",
 
-    () => {
-      if (!reference) {
+    (e) => {
+      if (
+        reference?.current &&
+        !(reference.current as any).contains(e.target)
+      ) {
         setShowModal(false);
       }
     },
@@ -36,7 +39,7 @@ const Header = () => {
 
   useEffect(() => {
     if (localStorage.getItem("auth-token")) {
-      dispatch(loginUser({ isUserAuthenticated: true, user }));
+      dispatch(loginUser({ isUserAuthenticated: true, user, isLoading:false }));
     }
   }, []);
 

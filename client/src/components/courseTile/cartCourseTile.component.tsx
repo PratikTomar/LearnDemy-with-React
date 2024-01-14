@@ -8,12 +8,13 @@ type CourseProps = {
   coursedetails: CourseModel;
 };
 
-const CartCourses= (props: CourseProps) => {
+const CartCourses = (props: CourseProps) => {
+  
   const { coursedetails } = props;
   const dispatch = useDispatch();
   const removeItemHandler = () => {
     dispatch(deleteItemFromCart(coursedetails));
-  }
+  };
 
   return (
     <div className="cart-course-container">
@@ -35,10 +36,7 @@ const CartCourses= (props: CourseProps) => {
           <p className="trainer-name">{coursedetails.trainerName}</p>
         </div>
         <div className="delete-container">
-          <button
-            className="cart-remove-btn"
-            onClick={removeItemHandler}
-          >
+          <button className="cart-remove-btn" onClick={removeItemHandler}>
             Remove
           </button>
         </div>
@@ -55,6 +53,6 @@ const CartCourses= (props: CourseProps) => {
       </div>
     </div>
   );
-}
+};
 
 export default CartCourses;

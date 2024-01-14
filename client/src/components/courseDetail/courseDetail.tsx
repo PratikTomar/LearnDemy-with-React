@@ -6,32 +6,38 @@ import { RootState } from "../../redux/store/store";
 import Ratings from "../atoms/rating/rating.component";
 import { sagaActions } from "../../saga/sagaActions";
 import { addItemToCart } from "../../redux/reducer/cart.reducer";
+import Loader from "../common/loader/loader.component";
 
 export default function CourseDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const course = useSelector((state: RootState) => state.courses.selectedCourse);
+  const course = useSelector(
+    (state: RootState) => state.courses.selectedCourse
+  );
   const cart = useSelector((state: RootState) => state.cart);
+  const isLoading = useSelector((state: RootState) => state.auth.isLoading);
 
   const cartItemHandler = () => {
-    const cartItemPresent = cart?.find(
-      (item) => item.id === course?.id
-    );
+    const cartItemPresent = cart?.find((item) => item.id === course?.id);
     if (!cartItemPresent) {
       dispatch(addItemToCart([course]));
     }
     navigate("/dashboard/cart");
-  }
+  };
 
   const buyNowHandler = () => {
     dispatch(addItemToCart([course]));
     navigate("/dashboard/checkout");
-  }
+  };
 
   useEffect(() => {
     dispatch({ type: sagaActions.FETCH_COURSE_BY_ID, payload: id });
   }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -77,10 +83,7 @@ export default function CourseDetail() {
           <div className="buy-course-container">
             <div className="course-price">&#8377;{course?.discountedPrice}</div>
             <div className="atc-container">
-              <button
-                className="add-to-cart"
-                onClick={cartItemHandler}
-              >
+              <button className="add-to-cart" onClick={cartItemHandler}>
                 Add To Cart
               </button>
               <div className="wish-list">
@@ -89,10 +92,7 @@ export default function CourseDetail() {
                 </div>
               </div>
             </div>
-            <button
-              onClick={buyNowHandler}
-              className="buy-now"
-            >
+            <button onClick={buyNowHandler} className="buy-now">
               Buy now
             </button>
           </div>

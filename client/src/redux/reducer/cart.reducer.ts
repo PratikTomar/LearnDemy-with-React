@@ -6,9 +6,13 @@ const initialState: CourseModel[] = [];
 export const cartReducer = createSlice({
   name: "cart",
   initialState,
+  
   reducers: {
+    
     addItemToCart: (cart, action: PayloadAction<CourseModel[]>) => {
+      
       cart.push(...action.payload);
+      
       return cart;
     },
     deleteItemFromCart : (cart, action: PayloadAction<CourseModel>) => {
